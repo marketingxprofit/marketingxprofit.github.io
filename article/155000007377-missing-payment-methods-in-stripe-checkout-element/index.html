@@ -1,0 +1,46 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Missing payment methods in Stripe checkout element | MxP Help Center</title>
+<meta name="description" content="">
+<link rel="canonical" href="https://helpcenter.marketingxprofit.com/article/155000007377-missing-payment-methods-in-stripe-checkout-element/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--p:#111111;--a:#2563EB;--bg:#F6F7F9;--t:#111111;}
+*{box-sizing:border-box}body{margin:0;font-family:'Poppins',system-ui,sans-serif;background:var(--bg);color:var(--t);line-height:1.6}
+a{color:var(--a);text-decoration:none}a:hover{text-decoration:underline}
+header{background:var(--p);color:#fff;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+header a{color:#fff}header .brand{font-weight:700;font-size:18px;display:flex;align-items:center;gap:14px}header img{height:44px;width:auto;max-width:220px;object-fit:contain}
+nav a{margin-left:18px;font-size:14px}
+.hero{background:var(--p);color:#fff;padding:36px 24px 44px;text-align:center}
+.hero h1{margin:0 0 16px;font-size:28px}
+.search{max-width:720px;margin:0 auto;position:relative}
+.search input{width:100%;padding:14px 18px;border-radius:10px;border:0;font-size:16px;font-family:inherit}
+.results{position:absolute;left:0;right:0;top:54px;background:#fff;color:var(--t);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.15);text-align:left;max-height:380px;overflow:auto;display:none;z-index:9}
+.results a{display:block;padding:10px 16px;border-bottom:1px solid #eee;color:var(--t)}.results a small{display:block;color:#666}
+main{max-width:1040px;margin:0 auto;padding:28px 24px 60px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card{background:#fff;border-radius:12px;padding:18px 20px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.card h3{margin:0 0 8px;font-size:17px}.card ul{margin:0;padding-left:18px;font-size:14px}.card li{margin:4px 0}
+.crumbs{font-size:13px;color:#666;margin-bottom:14px}.crumbs a{color:#666}
+article{background:#fff;border-radius:12px;padding:28px 32px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+article h1{margin-top:0;font-size:26px}article img{max-width:100%;height:auto;border-radius:8px;border:1px solid #eee}
+article iframe{max-width:100%}article table{border-collapse:collapse;width:100%;font-size:14px}article td,article th{border:1px solid #e5e5e5;padding:8px}
+article pre{background:#f4f4f4;padding:12px;border-radius:8px;overflow:auto;font-size:13px}
+.meta{color:#777;font-size:13px;margin-top:24px;border-top:1px solid #eee;padding-top:12px}
+.list a{display:block;background:#fff;padding:14px 18px;border-radius:10px;margin-bottom:8px;color:var(--t);box-shadow:0 1px 3px rgba(0,0,0,.05)}
+footer{text-align:center;color:#888;font-size:13px;padding:24px}
+@media(max-width:600px){main{padding:16px}article{padding:20px 16px}nav a{margin-left:10px}}
+</style></head><body>
+<header><a class="brand" href="/"><img src="https://msgsndr-private.storage.googleapis.com/companyPhotos/032e4d2e-167f-4a88-a187-0f95a253ad1e.png" alt="MxP"><span style="border-left:1px solid rgba(255,255,255,.35);padding-left:14px">Help Center</span></a><nav><a href="/">Knowledge base</a><a href="https://app.marketingxprofit.com" target="_blank" rel="noopener">Go to MxP CRM &#8599;</a></nav></header>
+<div class="hero"><h1>How can we help?</h1><div class="search"><input id="q" type="search" placeholder="Search for articles..." autocomplete="off"><div id="results" class="results"></div></div></div>
+<main><div class="crumbs"><a href="/">Knowledge base</a> &rsaquo; <a href="/category/155000000067-payments/">Payments</a> &rsaquo; <a href="/folder/155000000905-payment-integrations-methods-and-settings/">Payment integrations, methods and settings</a></div><article><h1>Missing payment methods in Stripe checkout element</h1><h2 dir="ltr"><br/></h2><p dir="ltr">This is a common question from clients. If you are using Stripe, the payment methods shown at checkout such as Klarna, Afterpay, cards, and others are dynamically decided by Stripe. Even if a method is enabled in Stripe and enabled in LC, Stripe may still hide it for some payments.</p><h2 dir="ltr"><br/><strong>Why a payment method might not appear?</strong></h2><p><br/></p><p>Stripe determines which methods to show based on several conditions, including:</p><ol><li><p>Your Stripe account default currency</p></li><li><p>Presentment currency (the currency of the product or invoice being purchased)</p></li><li><p>Payer location and IP address</p></li><li><p>Eligibility and restrictions on the payment method for your account</p></li><li><p>Transaction amount limits for that method</p></li><li><p>Whether the method is supported in the payer’s country or region</p></li></ol><p>Because Stripe Payment Element adapts per payer and per transaction, you can see different payment methods for different customers.</p><h2 dir="ltr"><br/><strong>How to check why a method is missing?</strong></h2><p>You can troubleshoot this in two ways.<br/><br/></p><h4 dir="ltr">Option 1: Use Stripe’s troubleshooting tool</h4><p dir="ltr">Stripe provides a dedicated tool to debug missing payment methods:<br/><a dir="ltr" href="https://support.stripe.com/questions/troubleshoot-missing-payment-methods" rel="noopener" target="_blank">https://support.stripe.com/questions/troubleshoot-missing-payment-methods</a><br/><br/><em>Example -</em></p><p dir="ltr"><em dir="ltr"><img data-attachment="[object Object]" data-id="155065062545" loading="lazy" src="https://fgdlpfnisaeyimjuhvft.supabase.co/storage/v1/object/public/help-assets/155000007377/616b22cacd0b68df.png"/> </em></p><h4 dir="ltr"><br/>Option 2: Check method requirements inside Stripe dashboard</h4><ol><li><p>Open Stripe Dashboard</p></li><li><p>Go to Settings (top right gear icon)</p></li><li><p>Under Product settings, open Payments</p></li><li><p dir="ltr">Open the Payment methods tab</p></li><li><p dir="ltr">Look for the payment method that your payer cannot see</p></li><li><p dir="ltr">Click View details<br/><br/></p></li></ol><p dir="ltr">A panel will open with the method requirements and eligibility details. Common reasons a method is not shown include mismatches in:</p><ul><li>Transaction amount limits</li><li dir="ltr">Presentment currency support</li><li dir="ltr">Customer location support</li><li dir="ltr">Global availability and restrictions<br/><br/></li></ul><p dir="ltr">If any of these requirements are not met for that transaction, Stripe will hide the method.</p><p dir="ltr"><br/></p><p dir="ltr"><em>Example - </em></p><p dir="ltr"><img data-attachment="[object Object]" data-id="155065062703" loading="lazy" src="https://fgdlpfnisaeyimjuhvft.supabase.co/storage/v1/object/public/help-assets/155000007377/659ca5ba85253545.png"/></p><p dir="ltr"><br/></p><p dir="ltr"><em>,So in this case, for your account, Klarna will only work is your payer is in USA and Puerto Rico with the currency on checkout being USD.</em></p><h2 dir="ltr"><br/><strong>What MxP Payments can control?<br/></strong></h2><p>Stripe fully renders the checkout element and decides which payment methods appear. MxP Payments only controls whether a payment method is globally enabled on the LC side.</p><p>If Stripe shows a message like “blocked by LC payments”, that means the method is not yet enabled for LC and may require LC support to enable it after internal testing.<br/><br/><br/></p><p dir="ltr">Even in that case, LC still cannot force Stripe to display a method. Stripe decides whether it appears based on eligibility rules for the payer and transaction.</p><div class="meta">Last updated Tue, 17 Feb, 2026 at  2:34 AM</div></article></main>
+<footer>&copy; Marketing x Profit &middot; <a href="mailto:support@marketingxprofit.com">support@marketingxprofit.com</a></footer>
+<script>
+(function(){var i=document.getElementById('q'),r=document.getElementById('results'),idx=null;
+function load(cb){if(idx)return cb();fetch('/search.json').then(x=>x.json()).then(d=>{idx=d;cb();});}
+function esc(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+i.addEventListener('input',function(){var q=i.value.trim().toLowerCase();if(q.length<2){r.style.display='none';return;}
+load(function(){var w=q.split(/\s+/),hits=idx.map(a=>{var t=a.t.toLowerCase(),d=(a.d||'').toLowerCase(),s=0;
+w.forEach(x=>{if(t.includes(x))s+=3;if(d.includes(x))s+=1;});return [s,a];}).filter(x=>x[0]>0).sort((a,b)=>b[0]-a[0]).slice(0,12);
+r.innerHTML=hits.length?hits.map(x=>'<a href="'+x[1].u+'">'+esc(x[1].t)+'<small>'+esc(x[1].f)+'</small></a>').join(''):'<a>No articles found</a>';r.style.display='block';});});
+document.addEventListener('click',e=>{if(!r.contains(e.target)&&e.target!==i)r.style.display='none';});})();
+</script></body></html>

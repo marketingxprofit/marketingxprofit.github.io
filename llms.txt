@@ -1,0 +1,3 @@
+# MxP Help Center
+
+Help articles for the MxP platform. Every article is at /article/<id>-<slug>/.

@@ -1,0 +1,404 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MxP Custom Shipping Carrier Integration Guide | MxP Help Center</title>
+<meta name="description" content="Shipping carrier services marketplace app development">
+<link rel="canonical" href="https://helpcenter.marketingxprofit.com/article/155000004995-highlevel-custom-shipping-carrier-integration-guide/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--p:#111111;--a:#2563EB;--bg:#F6F7F9;--t:#111111;}
+*{box-sizing:border-box}body{margin:0;font-family:'Poppins',system-ui,sans-serif;background:var(--bg);color:var(--t);line-height:1.6}
+a{color:var(--a);text-decoration:none}a:hover{text-decoration:underline}
+header{background:var(--p);color:#fff;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+header a{color:#fff}header .brand{font-weight:700;font-size:18px;display:flex;align-items:center;gap:14px}header img{height:44px;width:auto;max-width:220px;object-fit:contain}
+nav a{margin-left:18px;font-size:14px}
+.hero{background:var(--p);color:#fff;padding:36px 24px 44px;text-align:center}
+.hero h1{margin:0 0 16px;font-size:28px}
+.search{max-width:720px;margin:0 auto;position:relative}
+.search input{width:100%;padding:14px 18px;border-radius:10px;border:0;font-size:16px;font-family:inherit}
+.results{position:absolute;left:0;right:0;top:54px;background:#fff;color:var(--t);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.15);text-align:left;max-height:380px;overflow:auto;display:none;z-index:9}
+.results a{display:block;padding:10px 16px;border-bottom:1px solid #eee;color:var(--t)}.results a small{display:block;color:#666}
+main{max-width:1040px;margin:0 auto;padding:28px 24px 60px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card{background:#fff;border-radius:12px;padding:18px 20px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.card h3{margin:0 0 8px;font-size:17px}.card ul{margin:0;padding-left:18px;font-size:14px}.card li{margin:4px 0}
+.crumbs{font-size:13px;color:#666;margin-bottom:14px}.crumbs a{color:#666}
+article{background:#fff;border-radius:12px;padding:28px 32px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+article h1{margin-top:0;font-size:26px}article img{max-width:100%;height:auto;border-radius:8px;border:1px solid #eee}
+article iframe{max-width:100%}article table{border-collapse:collapse;width:100%;font-size:14px}article td,article th{border:1px solid #e5e5e5;padding:8px}
+article pre{background:#f4f4f4;padding:12px;border-radius:8px;overflow:auto;font-size:13px}
+.meta{color:#777;font-size:13px;margin-top:24px;border-top:1px solid #eee;padding-top:12px}
+.list a{display:block;background:#fff;padding:14px 18px;border-radius:10px;margin-bottom:8px;color:var(--t);box-shadow:0 1px 3px rgba(0,0,0,.05)}
+footer{text-align:center;color:#888;font-size:13px;padding:24px}
+@media(max-width:600px){main{padding:16px}article{padding:20px 16px}nav a{margin-left:10px}}
+</style></head><body>
+<header><a class="brand" href="/"><img src="https://msgsndr-private.storage.googleapis.com/companyPhotos/032e4d2e-167f-4a88-a187-0f95a253ad1e.png" alt="MxP"><span style="border-left:1px solid rgba(255,255,255,.35);padding-left:14px">Help Center</span></a><nav><a href="/">Knowledge base</a><a href="https://app.marketingxprofit.com" target="_blank" rel="noopener">Go to MxP CRM &#8599;</a></nav></header>
+<div class="hero"><h1>How can we help?</h1><div class="search"><input id="q" type="search" placeholder="Search for articles..." autocomplete="off"><div id="results" class="results"></div></div></div>
+<main><div class="crumbs"><a href="/">Knowledge base</a> &rsaquo; <a href="/category/155000000059-e-commerce-store/">E-commerce store</a> &rsaquo; <a href="/folder/155000000182-e-commerce-store/">E-Commerce Store</a></div><article><h1>MxP Custom Shipping Carrier Integration Guide</h1><p><strong dir="ltr">TABLE OF CONTENTS</strong></p><ul><li><a href="#Introduction">Introduction</a></li><li><a href="#Table-of-Contents">Table of Contents</a></li><li><a href="#Integration-Flow-Diagram">Integration Flow Diagram</a></li><li><a href="#1.-Requirements">1. Requirements</a><ul><li><a href="#Technical-Knowledge">Technical Knowledge</a></li><li><a href="#Backend-Service">Backend Service</a></li><li><a href="#Database">Database</a></li><li><a href="#Frontend">Frontend</a></li><li><a href="#APIs">APIs</a></li></ul></li><li><a href="#2.-Initial-Setup">2. Initial Setup</a><ul><li><a href="#Create-Marketplace-App">Create Marketplace App</a></li><li><a href="#Configure-App-Settings">Configure App Settings</a></li><li><a href="#Required-Scopes">Required Scopes</a></li><li><a href="#Frontend-UI-(Custom-Page)">Frontend UI (Custom Page)</a></li><li><a href="#Handling-User-Context">Handling User Context</a></li><li><a href="#Carrier-Credential-Handling">Carrier Credential Handling</a></li></ul></li><li><a href="#3.-Live-Shipping-Rates-Implementation">3. Live Shipping Rates Implementation</a><ul><li><a href="#Register-Shipping-Carrier-in-MxP">Register Shipping Carrier in MxP</a></li><li><a href="#Implement-Live-Rates-Callback">Implement Live Rates Callback</a></li><li><a href="#Configure-Shipping-Rates-in-MxP-Zones">Configure Shipping Rates in MxP Zones</a></li></ul></li><li><a href="#4.-Order-Syncing-and-Fulfillment">4. Order Syncing and Fulfillment</a><ul><li><a href="#Enable-Order-Webhooks">Enable Order Webhooks</a></li><li><a href="#Handling-Order-Creation-Webhook">Handling Order Creation Webhook</a></li><li><a href="#Handling-Carrier-Shipping-Updates">Handling Carrier Shipping Updates</a></li></ul></li><li><a href="#5.-Disconnection-and-Uninstallation">5. Disconnection and Uninstallation</a><ul><li><a href="#Deleting-the-Shipping-Carrier">Deleting the Shipping Carrier</a></li></ul></li><li><a href="#Conclusion">Conclusion</a></li></ul><p><br/></p><h2><span dir="ltr">Introduction</span></h2><p><span>This guide provides a comprehensive walkthrough for developing a shipping carrier integration with MxP's marketplace. A custom shipping carrier integration allows businesses using MxP to connect their preferred shipping providers, offer real-time shipping rates during checkout, automate order fulfillment workflows, and provide accurate tracking information directly to customers. This enhances the native e-commerce capabilities within MxP.</span></p><p><span>Key benefits of implementing a custom shipping carrier integration include:</span></p><ul><li><span><strong>Flexibility:</strong> Connect with any shipping carrier that provides an API, beyond built-in options.</span></li><li><span><strong>Accurate Rates:</strong> Display real-time, accurate shipping costs from your specific carrier accounts during checkout.</span></li><li><span><strong>Automated Fulfillment:</strong> Reduce manual effort by automatically creating shipping labels and triggering shipments with your carrier.</span></li><li><span><strong>Seamless Tracking:</strong> Keep customers informed by syncing tracking information from the carrier back into MxP orders.</span></li><li><span><strong>Integrated Experience:</strong> Manage shipping aspects directly within the MxP ecosystem.</span></li></ul><p><span dir="ltr">Building this integration involves backend development to handle API calls and webhooks, frontend development for user configuration (often via a Custom Page), and secure management of credentials and data flow between MxP, your service, and the carrier's API. By following this guide, you can build a robust integration that streamlines shipping operations for MxP users.</span></p><p><br/></p><h2><span dir="ltr">Integration Flow Diagram</span></h2><p><img data-attachment="[object Object]" data-id="155044784099" loading="lazy" src="https://fgdlpfnisaeyimjuhvft.supabase.co/storage/v1/object/public/help-assets/155000004995/04d6411936576f11.png"/></p><p><br/></p><h2><span>1. Requirements</span></h2><h3><span>Technical Knowledge</span></h3><ul><li><span>Basic backend development knowledge (e.g., Node.js, Python, etc.).</span></li><li><span>Understanding of REST APIs, webhooks, and OAuth 2.0 authorization flow.</span></li></ul><h3><span>Backend Service</span></h3><ul><li><span>A backend service capable of:</span><ul><li><span>Handling OAuth redirection from MxP.</span></li><li><span>Receiving and processing webhooks from both MxP (e.g., order events) and the custom shipping carrier (e.g., shipping updates).</span></li><li><span>Making API calls to both MxP and the custom carrier's API.</span></li><li><span>Serving the frontend UI (if not hosted separately).</span></li></ul></li></ul><h3><span>Database</span></h3><ul><li><span>A database to securely store:</span><ul><li><span>MxP OAuth tokens (access and refresh tokens) associated with location IDs.</span></li><li><span>Custom shipping carrier credentials (e.g., API keys, secrets) provided by the user, linked to the MxP location.</span></li><li><span>Mapping information between MxP entities (like orders) and carrier entities.</span></li></ul></li></ul><h3><span>Frontend</span></h3><ul><li><span>A simple frontend application (can be implemented as a MxP Custom Page) that allows users to:</span><ul><li><span>Initiate the connection process.</span></li><li><span>Input and save their shipping carrier API credentials.</span></li><li><span>Manage connection settings (e.g., enable/disable features).</span></li></ul></li></ul><h3><span>APIs</span></h3><ul><li><span>Your backend service will need to implement several API endpoints:</span><ul><li><span><strong>OAuth Redirect URI:</strong> Handles the callback from MxP after app authorization.</span></li><li><span><strong>MxP Webhook Listener:</strong> Receives webhooks from MxP (e.g., <code>OrderCreate</code>, <code>OrderStatusUpdate</code>).</span></li><li><span><strong>Carrier Credential Management:</strong> APIs to save/update/delete carrier credentials entered via the frontend.</span></li><li><span><strong>Carrier Webhook Listener:</strong> Receives webhooks from the custom shipping carrier.</span></li><li><span><strong>Live Rates Callback:</strong> An endpoint MxP calls to fetch live shipping rates during checkout.</span></li></ul></li></ul><h2><span>2. Initial Setup</span></h2><h3><span>Create Marketplace App</span></h3><ul><li><span>Follow the MxP documentation to create a new Marketplace application: <a href="https://highlevel.stoplight.io/docs/integrations/a04191c0fabf9-authorization" rel="noopener" target="_blank">MxP Authorization Documentation</a></span></li></ul><h3><span>Configure App Settings</span></h3><ul><li><span><strong>App Type:</strong> Set the application type to <strong>Sub-Account</strong>. This allows installation on specific location accounts.</span></li><li><span><strong>Redirect URI:</strong> Set this to the URL of your backend service endpoint designated to handle the OAuth callback (e.g., <code>https://your-backend.com/oauth/callback</code>).</span></li><li><span><strong>Webhook URL:</strong> Set this to the URL of your backend service endpoint designated to receive webhooks from MxP (e.g., <code>https://your-backend.com/webhooks/highlevel</code>). Ensure <code>OrderCreate</code> and <code>OrderStatusUpdate</code> webhooks are enabled in the app settings.</span></li></ul><h3><span>Required Scopes</span></h3><ul><li><span>Your application will need the following scopes to manage shipping and orders. Refer to the scopes documentation for the exact scope names: <a href="https://highlevel.stoplight.io/docs/integrations/6444956c5219f-scopes" rel="noopener" target="_blank">MxP Scopes Documentation</a></span><ul><li><span><code>orders.readonly</code></span></li><li><span><code>orders.write</code></span></li><li><span><code>shipping.readonly</code></span></li><li><span><code>shipping.write</code></span></li></ul></li></ul><h3><span>Frontend UI (Custom Page)</span></h3><ul><li><span>Develop a frontend interface where users can enter their specific shipping carrier credentials (API Key, Secret, Account ID, etc.).</span></li><li><span>This UI should be embedded within MxP using a Custom Menu Link pointing to your hosted frontend page or an endpoint serving the UI.</span></li></ul><h3><span>Handling User Context</span></h3><ul><li><span>Your frontend and backend need to identify the MxP location the user is currently interacting with. Use the context provided by MxP when loading your custom page/menu link.</span></li><li><span>Refer to the documentation on User Context: <a href="https://highlevel.stoplight.io/docs/integrations/adfc6ad89ffb8-user-context-in-marketplace-apps" rel="noopener" target="_blank">User Context in Marketplace Apps</a></span></li><li><span>Typically, this involves parsing a token (like a JWT or an encrypted payload) passed as a query parameter when MxP redirects to your frontend/backend. Decrypt/validate this token using a shared secret provided during app setup to get the <code>locationId</code>.</span></li></ul><p><span><strong>Backend Example (Node.js/Express):</strong></span></p><div><pre contenteditable="false" data-code-brush="JavaScript" rel="highlighter">// Example using crypto-js for AES decryption
+const CryptoJS = require('crypto-js')
+
+function decryptGhlUserData(encryptedData, sharedSecret) {
+  try {
+    const bytes = CryptoJS.AES.decrypt(encryptedData, sharedSecret)
+    const decryptedData = bytes.toString(CryptoJS.enc.Utf8)
+    return JSON.parse(decryptedData)
+  } catch (error) {
+    console.error('Decryption failed:', error)
+    throw new Error('Failed to decrypt or parse user data')
+  }
+}
+
+// Example Express middleware/route handler
+app.post('/your-context-endpoint', (req, res) =&gt; {
+  try {
+    // Assuming encrypted data is passed in the request body
+    const { encryptedContextData } = req.body
+    const sharedSecret = process.env.GHL_APP_SHARED_SECRET // Load your shared secret securely
+
+    if (!encryptedContextData || !sharedSecret) {
+      return res.status(400).json({ error: 'Missing data or configuration' })
+    }
+
+    const userData = decryptGhlUserData(encryptedContextData, sharedSecret)
+    console.log('Decrypted User Context:', userData)
+    // Now you have access to userData.locationId, userData.userId, etc.
+    // Proceed with your logic...
+    res.json({ success: true, locationId: userData.locationId })
+  } catch (error) {
+    res.status(500).json({ error: error.message || 'Internal Server Error' })
+  }
+})</pre></div><p><span><strong dir="ltr">Frontend Example (Custom Page JavaScript):</strong></span></p><div><pre contenteditable="false" data-code-brush="JavaScript" rel="highlighter">// Function to request and potentially decrypt user context data
+async function getUserContext() {
+  return new Promise((resolve, reject) =&gt; {
+    const timeout = setTimeout(() =&gt; {
+      reject(new Error('Timeout waiting for user context response'))
+      window.removeEventListener('message', messageHandler)
+    }, 5000) // 5-second timeout
+
+    const messageHandler = (event) =&gt; {
+      // Optional: Add origin check for security
+      // if (event.origin !== 'expected_highlevel_origin') return;
+
+      if (event.data &amp;&amp; event.data.message === 'REQUEST_USER_DATA_RESPONSE') {
+        clearTimeout(timeout)
+        window.removeEventListener('message', messageHandler)
+        console.log('Received encrypted context from MxP:', event.data.payload)
+        // Send event.data.payload to your backend for decryption
+        // fetch('/your-context-endpoint', { method: 'POST', ... body: { encryptedContextData: event.data.payload }})
+        //   .then(response =&gt; response.json())
+        //   .then(decryptedData =&gt; resolve(decryptedData))
+        //   .catch(error =&gt; reject(error));
+
+        // For demonstration, assuming payload is the decrypted context (or you handle decryption client-side IF safe)
+        resolve(event.data.payload)
+      }
+    }
+
+    window.addEventListener('message', messageHandler)
+    // Request the data from the parent MxP window
+    window.parent.postMessage({ message: 'REQUEST_USER_DATA' }, '*') // Use a specific target origin in production
+  })
+}
+
+// Example usage:
+getUserContext()
+  .then((context) =&gt; {
+    console.log('User Context:', context)
+    // Use context.locationId, context.userId etc.
+  })
+  .catch((error) =&gt; {
+    console.error('Failed to get user context:', error)
+  })</pre></div><h3><span dir="ltr">Carrier Credential Handling</span></h3><ol><li><p><span><strong>Receive Credentials:</strong> Get the carrier API key, secret, etc., from the user via your frontend UI.</span></p></li><li><p><span><strong>Associate with Location:</strong> Store these credentials securely in your database, linking them to the <code>locationId</code> obtained from the user context.</span></p></li><li><p><span><strong>Validate Credentials:</strong> Make a test API call to the carrier's API using the provided credentials to ensure they are valid. Provide feedback to the user.</span></p><p><span><strong dir="ltr">Frontend Example (Saving Credentials):</strong></span></p><div><pre contenteditable="false" data-code-brush="JavaScript" rel="highlighter">async function saveCarrierCredentials(locationId, apiKey, apiSecret) {
+  try {
+    const response = await fetch('/your-backend-api/carrier/credentials', {
+      // Your backend endpoint
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+        // Include authentication if needed (e.g., JWT)
+      },
+      body: JSON.stringify({
+        locationId: locationId, // Send context if needed by backend
+        apiKey: apiKey,
+        apiSecret: apiSecret
+      })
+    })
+
+    if (!response.ok) {
+      const errorData = await response.json()
+      throw new Error(errorData.message || `HTTP error! status: ${response.status}`)
+    }
+
+    const result = await response.json()
+    console.log('Credentials saved successfully:', result)
+    // Update UI (e.g., show success message)
+    return result
+  } catch (error) {
+    console.error('Failed to save carrier credentials:', error)
+    // Update UI (e.g., show error message)
+    throw error
+  }
+}
+
+// Example form submission handler
+document.getElementById('credential-form').addEventListener('submit', async (event) =&gt; {
+  event.preventDefault()
+  const apiKey = document.getElementById('api-key').value
+  const apiSecret = document.getElementById('api-secret').value
+  const locationId = 'USER_LOCATION_ID' // Get this from user context
+
+  try {
+    await saveCarrierCredentials(locationId, apiKey, apiSecret)
+    alert('Credentials Saved!')
+  } catch (error) {
+    alert(`Error saving credentials: ${error.message}`)
+  }
+})</pre></div></li><li><p><span><strong>Setup Carrier Webhooks:</strong> Use the validated carrier credentials to make API calls to the <em>carrier's</em> system to register <em>your</em> backend's carrier webhook listener URL (e.g., <code>https://your-backend.com/webhooks/carrier</code>). This allows the carrier to notify your service about shipping updates (like tracking number generation).</span></p></li></ol><h2><span>3. Live Shipping Rates Implementation</span></h2><p><span>To allow MxP checkout to display real-time shipping rates from your custom carrier, you need to register your service as a shipping carrier within MxP.</span></p><h3><span>Register Shipping Carrier in MxP</span></h3><ul><li><span dir="ltr">Your backend service needs to make a POST request to the MxP API endpoint responsible for creating shipping carriers. This endpoint is typically associated with the Store/Payments microservice. The endpoint is <code>POST /shipping-carrier</code>.</span></li><li><span>The request body should include the location context (<code>altId</code>, <code>altType</code>) and details about your carrier integration.</span></li></ul><p><span><strong>Example Request:</strong></span></p><div><pre contenteditable="false" data-code-brush="JavaScript" rel="highlighter">POST /shipping-carrier HTTP/1.1
+Host: &lt;highlevel-api-domain&gt;
+Authorization: Bearer &lt;location_access_token&gt;
+Content-Type: application/json
+
+{
+  "altId": "LOCATION_ID_HERE", // The location ID obtained from user context
+  "altType": "location",
+  "name": "Your Custom Carrier Name", // e.g., "My Awesome Shipping"
+  "callbackUrl": "https://your-backend.com/rates" // Your backend endpoint for live rates
+}</pre><p><br/></p></div><ul><li><span><strong><code dir="ltr">name</code></strong>: The name displayed to the user in MxP shipping settings.</span></li><li><span><strong><code>callbackUrl</code></strong>: The <strong>base URL</strong> where MxP will send POST requests to fetch live rates during checkout. MxP will append <code>/rates</code> to this URL. So, if you provide <code>https://your-backend.com/shipping</code>, MxP will call <code>https://your-backend.com/shipping/rates</code>. In the example above, the final URL called will be <code>https://your-backend.com/rates/rates</code>, so adjust your <code>callbackUrl</code> accordingly (e.g., just <code>https://your-backend.com</code> if your endpoint is <code>/rates</code>). <em>Correction based on user prompt: The prompt implies the <em>full</em> URL including <code>/rates</code> should be provided in <code>callbackUrl</code>.</em> Let's assume the prompt is correct: Set <code>callbackUrl</code> to <code>https://your-backend.com/rates</code>.</span></li><li><span><strong>Response:</strong> A successful response will contain the details of the created carrier, including a unique <code>_id</code> (let's call it <code>shippingCarrierId</code>). Store this <code>shippingCarrierId</code> in your database, associated with the location and carrier credentials.</span></li></ul><div><pre contenteditable="false" data-code-brush="JavaScript" rel="highlighter">{
+  "data": {
+    "_id": "SHIPPING_CARRIER_ID_HERE", // Store this ID
+    "altId": "LOCATION_ID_HERE",
+    "altType": "location",
+    "name": "Your Custom Carrier Name",
+    "callbackUrl": "https://your-backend.com/rates",
+    "marketplaceAppId": "YOUR_MARKETPLACE_APP_ID",
+    "createdAt": "...",
+    "updatedAt": "..."
+  },
+  "status": true
+}</pre><p><br/></p></div><h3><span>Implement Live Rates Callback</span></h3><ul><li><span>Your backend must implement the endpoint specified in the <code>callbackUrl</code> (e.g., <code>POST /rates</code>).</span></li><li><span>MxP will send a <code>POST</code> request to this endpoint during checkout with details of the cart contents and destination address.</span></li></ul><p><span><strong>Example Request Body Received by Your Backend (<code>POST /rates</code>):</strong></span></p><div><pre contenteditable="false" data-code-brush="JavaScript" rel="highlighter">{
+  "rate": {
+    "altId": "LOCATION_ID_HERE",
+    "altType": "location",
+    "origin": {
+      "name": "Store Owner Name",
+      "companyName": "Store Name",
+      "address1": "123 Origin St",
+      "address2": "Suite 100",
+      "city": "Origin City",
+      "state": "CA",
+      "zip": "90210",
+      "country": "US",
+      "phone": "5551112222",
+      "email": "store@example.com"
+    },
+    "destination": {
+      "name": "Customer Name",
+      "companyName": null,
+      "address1": "456 Destination Ave",
+      "address2": null,
+      "city": "Destination City",
+      "state": "NY",
+      "zip": "10001",
+      "country": "US",
+      "phone": "5553334444",
+      "email": "customer@example.com"
+    },
+    "items": [
+      {
+        "name": "Product A",
+        "sku": "SKU123",
+        "quantity": 2,
+        "grams": 500, // Weight per item
+        "unitPrice": 25.0,
+        "totalPrice": 50.0, // quantity * unitPrice
+        "productId": "HL_PRODUCT_ID_1",
+        "priceId": "HL_PRICE_ID_1"
+      },
+      {
+        "name": "Product B",
+        "sku": "SKU456",
+        "quantity": 1,
+        "grams": 1200,
+        "unitPrice": 100.0,
+        "totalPrice": 100.0,
+        "productId": "HL_PRODUCT_ID_2",
+        "priceId": "HL_PRICE_ID_2"
+      }
+    ],
+    "currency": "USD"
+  }
+}</pre><p><br/></p></div><ul><li><span><strong>Your Backend Logic:</strong></span><ol><li><span>Parse the request body.</span></li><li><span>Retrieve the carrier credentials associated with the <code>altId</code> (locationId) from your database.</span></li><li><span>Transform the MxP rate request payload into the format required by your custom carrier's API.</span></li><li><span>Call the carrier's API to get live shipping rates.</span></li><li><span>Transform the carrier's response into the format expected by MxP.</span></li></ol></li><li><span><strong dir="ltr">Example Response Sent by Your Backend:</strong></span></li></ul><div><pre contenteditable="false" data-code-brush="JavaScript" rel="highlighter">{
+  "rates": [
+    {
+      "serviceName": "Standard Ground", // Name of the shipping service
+      "amount": 15.5, // Cost of the service
+      "currency": "USD", // Currency code
+      "estimatedDays": 5 // Estimated delivery days (optional)
+    },
+    {
+      "serviceName": "Express Overnight",
+      "amount": 45.0,
+      "currency": "USD",
+      "estimatedDays": 1
+    }
+  ]
+}</pre></div><h3><span>Configure Shipping Rates in MxP Zones</span></h3><ul><li><p><span>After successfully registering the shipping carrier, your integration (or the user manually) needs to add shipping rates based on this carrier to the relevant Shipping Zones within MxP Store settings.</span></p></li><li><p><span><strong>Backend Automation:</strong></span></p><ol><li><p><span dir="ltr">Use the MxP API to list existing Shipping Zones for the location. The endpoint is<code>GET /shipping-zone</code>.</span></p><p><span><strong dir="ltr">Example Request (<code>GET /shipping-zone</code>):</strong></span></p><div><pre contenteditable="false" data-code-brush="JavaScript" rel="highlighter">GET /shipping-zone?altId=LOCATION_ID_HERE&amp;altType=location HTTP/1.1
+Host: &lt;highlevel-api-domain&gt;
+Authorization: Bearer &lt;location_access_token&gt;</pre></div></li><li><p><span>For each relevant zone returned by the above call, use the MxP API to create a new Shipping Rate (<code>POST /shipping-zones/{zoneId}/rates</code> - endpoint inferred).</span></p><ul><li><span>In the request body for creating the rate:</span><ul><li><span>Set <code>isCarrierRate</code> to <code>true</code>.</span></li><li><span>Provide the <code>shippingCarrierId</code> obtained during carrier registration.</span></li><li><span>Set a placeholder <code>amount</code> (e.g., 0) as the actual rate will be fetched live via the callback.</span></li><li><span>Set <code>name</code> (e.g., "My Awesome Shipping - Live Rates").</span></li><li><span>Specify <code>altId</code>, <code>altType</code>.</span></li></ul></li></ul></li></ol></li></ul><p><span><strong dir="ltr">Example Request Body (<code>POST /shipping-zones/{zoneId}/rates</code>):</strong></span></p><div><pre contenteditable="false" data-code-brush="JavaScript" rel="highlighter">{
+  "altId": "LOCATION_ID_HERE",
+  "altType": "location",
+  "name": "My Awesome Shipping - Live Rates", // Name shown to user
+  "currency": "USD", // Or the location's currency
+  "amount": 0, // Placeholder, actual rate fetched live
+  "conditionType": "NONE", // Or based on weight/price if needed, though usually NONE for carrier rates
+  "isCarrierRate": true,
+  "shippingCarrierId": "SHIPPING_CARRIER_ID_HERE" // The ID received when registering the carrier
+}</pre></div><h2><span>4. Order Syncing and Fulfillment</span></h2><p><span>This section describes how to sync orders to your carrier and automate fulfillment updates back into MxP.</span></p><h3><span>Enable Order Webhooks</span></h3><ul><li><span>Ensure the <code>OrderCreate</code> and <code>OrderStatusUpdate</code> webhooks are enabled in your MxP Marketplace App configuration settings. Point them to your backend's MxP webhook listener endpoint.</span></li></ul><h3><span>Handling Order Creation Webhook</span></h3><ol><li><p><span><strong>Receive Webhook:</strong> Your backend receives a POST request from MxP when an order is created or its status changes (specifically looking for newly completed orders relevant for shipping).</span></p></li><li><p><span><strong>Validate:</strong> Verify the webhook signature/authenticity if applicable.</span></p></li><li><p><span><strong>Process:</strong></span></p><ul><li><span>Check if the order status is appropriate for shipping (e.g., <code>Completed</code>, <code>Paid</code>).</span></li><li><span>Check if the order requires shipping (contains physical products).</span></li><li><span>Retrieve the full order details using the MxP API (<code>GET /orders/{orderId}</code>).</span></li><li><span>Retrieve the associated carrier credentials from your database using the <code>locationId</code>.</span></li></ul></li><li><p><span><strong dir="ltr">Backend Example (Node.js/Express):</strong></span></p><div><pre contenteditable="false" data-code-brush="JavaScript" rel="highlighter">// Example Express endpoint for MxP webhooks
+app.post('/webhooks/highlevel', async (req, res) =&gt; {
+  try {
+    // 1. TODO: Validate webhook signature (important for security)
+    // const signature = req.headers['webhook-signature']; // Example header
+    // const isValid = validateSignature(req.rawBody, signature, GHL_WEBHOOK_SECRET);
+    // if (!isValid) return res.status(401).send('Invalid signature');
+
+    const { type, locationId, orderId, status } = req.body // Adjust based on actual webhook payload structure
+
+    console.log(`Received webhook: Type=${type}, LocationId=${locationId}, OrderId=${orderId}, Status=${status}`)
+
+    // 2. Process only relevant events (e.g., completed orders)
+    if ((type === 'OrderCreate' || type === 'OrderStatusUpdate') &amp;&amp; orderId &amp;&amp; status === 'completed') {
+      console.log(`Processing order ${orderId} for location ${locationId}`)
+      await processOrderForShipping(locationId, orderId)
+    } else {
+      console.log(`Skipping webhook type: ${type} or status: ${status}`)
+    }
+
+    res.status(200).send('Webhook received successfully')
+  } catch (error) {
+    console.error('Error processing MxP webhook:', error)
+    // Respond with 5xx error but don't reveal internal details
+    res.status(500).send('Internal Server Error')
+  }
+})
+
+async function processOrderForShipping(locationId, orderId) {
+  try {
+    // 3. Retrieve full order details from MxP API
+    // const orderDetails = await highlevelApiClient.getOrder(locationId, orderId);
+    // Example: const orderDetails = { requiresShipping: true, items: [...] }; // Mock
+
+    // Check if order actually needs shipping
+    // if (!orderDetails || !orderDetails.requiresShipping) {
+    //   console.log(`Order ${orderId} does not require shipping.`);
+    //   return;
+    // }
+
+    // 4. Retrieve carrier credentials for the location from your DB
+    // const credentials = await database.getCarrierCredentials(locationId);
+    // if (!credentials) throw new Error(`Credentials not found for location ${locationId}`);
+
+    // 5. Transform MxP order data to carrier's API format
+    // const carrierPayload = transformOrderForCarrier(orderDetails);
+
+    // 6. Call carrier API to create shipment/order
+    // const carrierResponse = await carrierApiClient.createShipment(credentials, carrierPayload);
+    // const carrierOrderId = carrierResponse.id;
+
+    // 7. Store mapping in your DB
+    // await database.storeOrderMapping(locationId, orderId, carrierOrderId);
+
+    console.log(`Successfully created shipment with carrier for order ${orderId}. Carrier ID: ${carrierOrderId}`)
+  } catch (error) {
+    console.error(`Failed to process order ${orderId} for shipping:`, error)
+    // TODO: Implement retry logic or error notification system
+  }
+}</pre></div></li><li><p><span><strong>Create Order with Carrier:</strong></span></p><ul><li><span>Transform the MxP order data into the format required by your carrier's "create order" or "create shipment" API endpoint.</span></li><li><span>Call the carrier's API to create the order/shipment.</span></li><li><span>Store the mapping between the MxP <code>orderId</code> and the carrier's order/shipment ID in your database.</span></li></ul></li></ol><h3><span>Handling Carrier Shipping Updates</span></h3><ol><li><p><span><strong>Receive Webhook:</strong> Your backend's <em>carrier</em> webhook listener receives a notification from the shipping carrier when a shipment status changes (e.g., label printed, tracking number generated, shipped, delivered).</span></p></li><li><p><span><strong>Validate:</strong> Verify the webhook's authenticity based on the carrier's mechanism (e.g., signature).</span></p></li><li><p><span><strong>Process:</strong></span></p><ul><li><span>Parse the webhook data to extract the carrier's order/shipment ID and the new shipping information (tracking number, tracking URL, status).</span></li><li><span>Use the carrier ID to look up the corresponding MxP <code>orderId</code> and <code>locationId</code> from your database mapping.</span></li></ul></li><li><p><span><strong>Backend Example (Node.js/Express):</strong></span></p><div><pre contenteditable="false" data-code-brush="JavaScript" rel="highlighter">// Example Express endpoint for Carrier webhooks
+app.post('/webhooks/carrier', async (req, res) =&gt; {
+  try {
+    // 1. TODO: Validate webhook authenticity (specific to the carrier)
+    // const isValid = validateCarrierSignature(req);
+    // if (!isValid) return res.status(401).send('Invalid signature');
+
+    const carrierWebhookData = req.body
+    console.log('Received carrier webhook:', JSON.stringify(carrierWebhookData))
+
+    // 2. Parse carrier data (adjust keys based on actual payload)
+    const carrierOrderId = carrierWebhookData.orderReference // Or shipmentId, etc.
+    const trackingNumber = carrierWebhookData.tracking?.number
+    const trackingUrl = carrierWebhookData.tracking?.url
+    const shippingStatus = carrierWebhookData.status // e.g., 'SHIPPED', 'LABEL_CREATED'
+
+    // 3. Check if we have necessary data (especially tracking number for fulfillment)
+    if (!carrierOrderId || !trackingNumber) {
+      console.log('Carrier webhook missing order reference or tracking number. Skipping.')
+      return res.status(200).send('Webhook received, but no action needed yet.')
+    }
+
+    // 4. Find corresponding MxP order info from DB mapping
+    // const mapping = await database.findMappingByCarrierId(carrierOrderId);
+    // if (!mapping) {
+    //   console.warn(`Received carrier update for unknown order reference: ${carrierOrderId}`);
+    //   return res.status(404).send('Mapping not found'); // Or 200 to prevent carrier retries
+    // }
+    // const { highlevelOrderId, locationId } = mapping;
+    // Mock:
+    const highlevelOrderId = 'HL_ORDER_ID_123'
+    const locationId = 'LOCATION_ID_XYZ'
+
+    // 5. Create fulfillment in MxP if applicable (e.g., status is SHIPPED)
+    if (shippingStatus === 'SHIPPED' || shippingStatus === 'LABEL_CREATED') {
+      // Adjust condition as needed
+      console.log(`Triggering fulfillment for MxP Order ${highlevelOrderId}`)
+      await createHighLevelFulfillment(locationId, highlevelOrderId, trackingNumber, trackingUrl)
+    } else {
+      console.log(`Carrier status ${shippingStatus} doesn't require fulfillment action yet.`)
+    }
+
+    res.status(200).send('Carrier webhook processed successfully')
+  } catch (error) {
+    console.error('Error processing carrier webhook:', error)
+    res.status(500).send('Internal Server Error')
+  }
+})
+
+async function createHighLevelFulfillment(locationId, orderId, trackingNumber, trackingUrl) {
+  try {
+    // Fetch order details to get line items and price IDs if needed
+    // const orderDetails = await highlevelApiClient.getOrder(locationId, orderId);
+    // const itemsToFulfill = orderDetails.items.map(item =&gt; ({ priceId: item.price._id, qty: item.quantity })); // Adjust as needed
+
+    const fulfillmentPayload = {
+      altId: locationId,
+      altType: 'location',
+      items: [
+        /* Populate with items being fulfilled, e.g., itemsToFulfill */
+      ],
+      trackings: [
+        {
+          trackingNumber: trackingNumber,
+          shippingCarrier: 'Your Custom Carrier Name', // Use the name registered earlier
+          trackingUrl: trackingUrl || undefined // Include URL if available
+        }
+      ],
+      notifyCustomer: true // Or based on user preference/setting
+    }
+
+    console.log('Creating MxP fulfillment with payload:', JSON.stringify(fulfillmentPayload))
+    // await highlevelApiClient.createFulfillment(locationId, orderId, fulfillmentPayload);
+    console.log(`Successfully created fulfillment for order ${orderId}`)
+  } catch (error) {
+    console.error(`Failed to create fulfillment for order ${orderId}:`, error)
+    // TODO: Implement retry logic or error notification
+  }
+}</pre><p><br/></p></div></li><li><p><span dir="ltr"><strong>Create Fulfillment in MxP: </strong>If a tracking number is now available, trigger the fulfillment process in MxP.</span></p><ul><li><span>Use the MxP API to create an order fulfillment record. Refer to the official documentation: <a href="https://highlevel.stoplight.io/docs/integrations/1e091099a92c6-create-order-fulfillment" rel="noopener" target="_blank">Create Order Fulfillment API</a></span></li><li><span>This typically involves making a <code>POST</code> request to an endpoint like <code>/orders/{orderId}/fulfillments</code>, as demonstrated in the <code>createHighLevelFulfillment</code> function example above.</span></li></ul></li></ol><h2><span>5. Disconnection and Uninstallation</span></h2><p><span>When a user disconnects or uninstalls your Marketplace App from their location, you need to clean up the integration settings within MxP.</span></p><h3><span>Deleting the Shipping Carrier</span></h3><ul><li><span>Your backend should listen for the App Uninstalled webhook from MxP (configure this in your Marketplace App settings).</span></li><li><span>When this webhook is received for a specific <code>locationId</code>:</span><ol><li><span>Look up the <code>shippingCarrierId</code> associated with that <code>locationId</code> in your database.</span></li><li><span dir="ltr">If found, make a <code>DELETE</code> request to the MxP API to remove the shipping carrier registration. The endpoint is<code>DELETE /shipping-carrier/{shippingCarrierId}</code>.</span></li></ol></li></ul><p><span><strong dir="ltr">Example Request:</strong></span></p><div><pre contenteditable="false" data-code-brush="JavaScript" rel="highlighter">DELETE /shipping-carrier/SHIPPING_CARRIER_ID_HERE?altId=LOCATION_ID_HERE&amp;altType=location HTTP/1.1
+Host: &lt;highlevel-api-domain&gt;
+Authorization: Bearer &lt;location_access_token&gt; // Need a valid token, potentially stored or obtained via app credentials</pre><p><br/></p></div><ul><li><span>This removes the carrier from the location's shipping settings, preventing errors if the callback URL becomes invalid.</span></li><li><span>Also, perform cleanup on your side: delete stored credentials, webhook registrations with the carrier, etc.</span></li></ul><h2><span>Conclusion</span></h2><p><span>Successfully creating a custom shipping carrier integration for MxP can significantly enhance the platform's e-commerce capabilities for users, offering greater flexibility and automation in their shipping processes. This guide has outlined the essential steps, from setting up the Marketplace App and handling authentication to implementing live rates, order syncing, and fulfillment.</span></p><p><span>The core components involve:</span></p><ol><li><span><strong>Secure Authentication:</strong> Managing OAuth tokens for MxP and API credentials for the carrier.</span></li><li><span><strong>API Integration:</strong> Interacting with both MxP and carrier APIs for registration, rates, orders, and fulfillment.</span></li><li><span><strong>Webhook Handling:</strong> Reliably processing asynchronous events from both platforms.</span></li><li><span><strong>Data Management:</strong> Storing credentials and mapping IDs between systems.</span></li><li><span><strong>User Interface:</strong> Providing a clear way for users to configure the integration.</span></li></ol><p><span>When building your integration, remember to prioritize robust error handling, security best practices (especially around credentials), and clear logging for easier debugging. Consider the scalability of your backend service and database as usage grows. Keep abreast of API changes from both MxP and your target shipping carrier to ensure long-term compatibility.</span></p><p dir="ltr"><span>By following these principles and adapting the examples provided, you can build a valuable and reliable shipping carrier integration for the MxP marketplace.</span></p><div class="meta">Last updated Sun, 13 Apr, 2025 at  7:30 AM</div></article></main>
+<footer>&copy; Marketing x Profit &middot; <a href="mailto:support@marketingxprofit.com">support@marketingxprofit.com</a></footer>
+<script>
+(function(){var i=document.getElementById('q'),r=document.getElementById('results'),idx=null;
+function load(cb){if(idx)return cb();fetch('/search.json').then(x=>x.json()).then(d=>{idx=d;cb();});}
+function esc(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+i.addEventListener('input',function(){var q=i.value.trim().toLowerCase();if(q.length<2){r.style.display='none';return;}
+load(function(){var w=q.split(/\s+/),hits=idx.map(a=>{var t=a.t.toLowerCase(),d=(a.d||'').toLowerCase(),s=0;
+w.forEach(x=>{if(t.includes(x))s+=3;if(d.includes(x))s+=1;});return [s,a];}).filter(x=>x[0]>0).sort((a,b)=>b[0]-a[0]).slice(0,12);
+r.innerHTML=hits.length?hits.map(x=>'<a href="'+x[1].u+'">'+esc(x[1].t)+'<small>'+esc(x[1].f)+'</small></a>').join(''):'<a>No articles found</a>';r.style.display='block';});});
+document.addEventListener('click',e=>{if(!r.contains(e.target)&&e.target!==i)r.style.display='none';});})();
+</script></body></html>

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://helpcenter.marketingxprofit.com/sitemap.xml
