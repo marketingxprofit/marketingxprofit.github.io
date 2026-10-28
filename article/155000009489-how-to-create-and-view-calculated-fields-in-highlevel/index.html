@@ -1,0 +1,46 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to Create and View Calculated Fields in MxP | MxP Help Center</title>
+<meta name="description" content="Learn how to create Calculated Fields in MxP, configure formulas, and view automatically updated, read-only values in Contacts and Opportunities on mobile.">
+<link rel="canonical" href="https://helpcenter.marketingxprofit.com/article/155000009489-how-to-create-and-view-calculated-fields-in-highlevel/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--p:#000000;--a:#2563EB;--bg:#F6F7F9;--t:#111111;}
+*{box-sizing:border-box}body{margin:0;font-family:'Poppins',system-ui,sans-serif;background:var(--bg);color:var(--t);line-height:1.6}
+a{color:var(--a);text-decoration:none}a:hover{text-decoration:underline}
+header{background:var(--p);color:#fff;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+header a{color:#fff}header .brand{font-weight:700;font-size:18px;display:flex;align-items:center;gap:14px}header img{height:44px;width:auto;max-width:220px;object-fit:contain}
+nav a{margin-left:18px;font-size:14px}
+.hero{background:var(--p);color:#fff;padding:36px 24px 44px;text-align:center}
+.hero h1{margin:0 0 16px;font-size:28px}
+.search{max-width:720px;margin:0 auto;position:relative}
+.search input{width:100%;padding:14px 18px;border-radius:10px;border:0;font-size:16px;font-family:inherit}
+.results{position:absolute;left:0;right:0;top:54px;background:#fff;color:var(--t);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.15);text-align:left;max-height:380px;overflow:auto;display:none;z-index:9}
+.results a{display:block;padding:10px 16px;border-bottom:1px solid #eee;color:var(--t)}.results a small{display:block;color:#666}
+main{max-width:1040px;margin:0 auto;padding:28px 24px 60px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card{background:#fff;border-radius:12px;padding:18px 20px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.card h3{margin:0 0 8px;font-size:17px}.card ul{margin:0;padding-left:18px;font-size:14px}.card li{margin:4px 0}
+.crumbs{font-size:13px;color:#666;margin-bottom:14px}.crumbs a{color:#666}
+article{background:#fff;border-radius:12px;padding:28px 32px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+article h1{margin-top:0;font-size:26px}article img{max-width:100%;height:auto;border-radius:8px;border:1px solid #eee}
+article iframe{max-width:100%}article table{border-collapse:collapse;width:100%;font-size:14px}article td,article th{border:1px solid #e5e5e5;padding:8px}
+article pre{background:#f4f4f4;padding:12px;border-radius:8px;overflow:auto;font-size:13px}
+.meta{color:#777;font-size:13px;margin-top:24px;border-top:1px solid #eee;padding-top:12px}
+.list a{display:block;background:#fff;padding:14px 18px;border-radius:10px;margin-bottom:8px;color:var(--t);box-shadow:0 1px 3px rgba(0,0,0,.05)}
+footer{text-align:center;color:#888;font-size:13px;padding:24px}
+@media(max-width:600px){main{padding:16px}article{padding:20px 16px}nav a{margin-left:10px}}
+</style></head><body>
+<header><a class="brand" href="/"><img src="https://msgsndr-private.storage.googleapis.com/companyPhotos/032e4d2e-167f-4a88-a187-0f95a253ad1e.png" alt="MxP"><span style="border-left:1px solid rgba(255,255,255,.35);padding-left:14px">Help Center</span></a><nav><a href="/">Knowledge base</a><a href="https://app.marketingxprofit.com" target="_blank" rel="noopener">Go to MxP CRM &#8599;</a></nav></header>
+<div class="hero"><h1>How can we help?</h1><div class="search"><input id="q" type="search" placeholder="Search for articles..." autocomplete="off"><div id="results" class="results"></div></div></div>
+<main><div class="crumbs"><a href="/">Knowledge base</a> &rsaquo; <a href="/category/155000000305-levelup-2026/">LevelUp 2026</a> &rsaquo; <a href="/folder/155000001588-levelup-2026/">LevelUp 2026</a></div><article><h1>How to Create and View Calculated Fields in MxP</h1><p>Calculated Fields automatically calculate values using information already stored in your CRM. You can use them to track lead scores, measure time between dates, or count down to upcoming renewals without manually updating results.</p><p>You create Calculated Fields on the web and can view their read-only values in Contacts and Opportunities on mobile.</p><hr/><h2 dir="ltr"><strong>How to Create a Calculated Field</strong></h2><ol start="1"><li><p>In your MxP sub-account, go to <strong>Settings &gt; Custom Fields</strong>.</p></li><li><p>Select <strong>Contact</strong> or <strong>Opportunity</strong>, then open the <strong>Fields</strong> tab.</p></li><li><p>Click <strong>Create field</strong> and select <strong>Calculated</strong>.</p></li><li><p>Enter a field name and select a folder.</p></li><li><p>Choose a calculation type:</p><ul><li><p><strong>Custom formula:</strong> Calculate values using numbers, text, dates, or conditions.</p></li><li><p><strong>Time between:</strong> Measure the time between two dates.</p></li><li><p><strong>Time since:</strong> Calculate time elapsed since a date.</p></li><li><p><strong>Time until:</strong> Calculate time remaining until a future date.</p></li></ul></li><li><p>Select an output type: <strong>Number, Boolean, Text, Date, or Date-time</strong>.</p></li><li><p>Select your source fields or enter a formula. Configure the number format if needed.</p></li><li><p>Preview the result using sample values, then save the field.</p></li></ol><p dir="ltr"></p><hr/><h2><strong>How to View Calculated Fields on Mobile</strong></h2><p>Update your MxP mobile app to <strong>version 4.25.0 (863) or higher</strong>.</p><h3><br/></h3><h3 dir="ltr">View in Contacts</h3><ol start="1"><li><p>Open the mobile app and go to <strong>Contacts</strong>.</p></li><li><p>Select a contact and tap <strong>Details</strong>.</p></li><li><p>Find the Calculated Field in its assigned folder.</p></li></ol><h3>View in Opportunities</h3><ol start="1"><li><p>Go to <strong>Opportunities &gt; Pipelines</strong>.</p></li><li><p>Select an opportunity and open <strong>Details</strong>.</p></li><li><p>Find the Calculated Field.</p></li></ol><p>To display a Calculated Field on opportunity cards:</p><ol start="1"><li><p>Go to <strong>Opportunities &gt; Settings &gt; Customize Cards</strong>.</p></li><li><p>Select the Calculated Field you want to display.</p></li><li><p>Tap <strong>Save</strong>.</p></li></ol><p><em>[Screenshot: Calculated Field displayed in mobile Opportunity Details.]</em></p><hr/><h2 dir="ltr"><strong>Refresh or Copy a Calculated Value</strong></h2><ul><li><p><strong>Refresh:</strong> Tap the refresh icon beside the field to retrieve its latest value.</p></li><li><p><strong>Copy:</strong> Long-press the calculated value to copy it.</p></li></ul><p>Calculated Fields display a lock icon because their values cannot be edited manually.</p><hr/><h2 dir="ltr"><strong>Important Notes</strong></h2><ul><li><p>Calculated Fields are created and configured on the web.</p></li><li><p>Values automatically recalculate when their source fields change.</p></li><li><p>Calculated values cannot be manually edited or overwritten through imports or workflows.</p></li><li><p>Date and time calculations use your sub-account's time zone.</p></li><li><p>Formula changes are managed on the web and do not require a new mobile app release.</p></li></ul><hr/><h2 dir="ltr">Related Articles</h2><ul><li><p><a href="/article/155000008466-creating-and-managing-custom-fields-for-better-data-organization/">Creating and Managing Custom Fields for Better Data Organization</a></p></li><li><p><a href="/article/155000008397-opportunities-v2-mobile-app/">Opportunities V2 Mobile App</a></p></li><li><p><a dir="ltr" href="/article/155000005843-article/">Unified Contacts Workspace in Mobile App</a></p></li></ul><div class="meta">Last updated Tue, 27 Oct, 2026 at  4:46 PM</div></article></main>
+<footer>&copy; Marketing x Profit &middot; <a href="mailto:support@marketingxprofit.com">support@marketingxprofit.com</a></footer>
+<script>
+(function(){var i=document.getElementById('q'),r=document.getElementById('results'),idx=null;
+function load(cb){if(idx)return cb();fetch('/search.json').then(x=>x.json()).then(d=>{idx=d;cb();});}
+function esc(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+i.addEventListener('input',function(){var q=i.value.trim().toLowerCase();if(q.length<2){r.style.display='none';return;}
+load(function(){var w=q.split(/\s+/),hits=idx.map(a=>{var t=a.t.toLowerCase(),d=(a.d||'').toLowerCase(),s=0;
+w.forEach(x=>{if(t.includes(x))s+=3;if(d.includes(x))s+=1;});return [s,a];}).filter(x=>x[0]>0).sort((a,b)=>b[0]-a[0]).slice(0,12);
+r.innerHTML=hits.length?hits.map(x=>'<a href="'+x[1].u+'">'+esc(x[1].t)+'<small>'+esc(x[1].f)+'</small></a>').join(''):'<a>No articles found</a>';r.style.display='block';});});
+document.addEventListener('click',e=>{if(!r.contains(e.target)&&e.target!==i)r.style.display='none';});})();
+</script></body></html>

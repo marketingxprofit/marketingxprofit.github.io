@@ -1,0 +1,46 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Review workflows with errors | MxP Help Center</title>
+<meta name="description" content="">
+<link rel="canonical" href="https://helpcenter.marketingxprofit.com/article/155000009464-review-workflows-with-errors/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--p:#000000;--a:#2563EB;--bg:#F6F7F9;--t:#111111;}
+*{box-sizing:border-box}body{margin:0;font-family:'Poppins',system-ui,sans-serif;background:var(--bg);color:var(--t);line-height:1.6}
+a{color:var(--a);text-decoration:none}a:hover{text-decoration:underline}
+header{background:var(--p);color:#fff;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+header a{color:#fff}header .brand{font-weight:700;font-size:18px;display:flex;align-items:center;gap:14px}header img{height:44px;width:auto;max-width:220px;object-fit:contain}
+nav a{margin-left:18px;font-size:14px}
+.hero{background:var(--p);color:#fff;padding:36px 24px 44px;text-align:center}
+.hero h1{margin:0 0 16px;font-size:28px}
+.search{max-width:720px;margin:0 auto;position:relative}
+.search input{width:100%;padding:14px 18px;border-radius:10px;border:0;font-size:16px;font-family:inherit}
+.results{position:absolute;left:0;right:0;top:54px;background:#fff;color:var(--t);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.15);text-align:left;max-height:380px;overflow:auto;display:none;z-index:9}
+.results a{display:block;padding:10px 16px;border-bottom:1px solid #eee;color:var(--t)}.results a small{display:block;color:#666}
+main{max-width:1040px;margin:0 auto;padding:28px 24px 60px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card{background:#fff;border-radius:12px;padding:18px 20px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.card h3{margin:0 0 8px;font-size:17px}.card ul{margin:0;padding-left:18px;font-size:14px}.card li{margin:4px 0}
+.crumbs{font-size:13px;color:#666;margin-bottom:14px}.crumbs a{color:#666}
+article{background:#fff;border-radius:12px;padding:28px 32px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+article h1{margin-top:0;font-size:26px}article img{max-width:100%;height:auto;border-radius:8px;border:1px solid #eee}
+article iframe{max-width:100%}article table{border-collapse:collapse;width:100%;font-size:14px}article td,article th{border:1px solid #e5e5e5;padding:8px}
+article pre{background:#f4f4f4;padding:12px;border-radius:8px;overflow:auto;font-size:13px}
+.meta{color:#777;font-size:13px;margin-top:24px;border-top:1px solid #eee;padding-top:12px}
+.list a{display:block;background:#fff;padding:14px 18px;border-radius:10px;margin-bottom:8px;color:var(--t);box-shadow:0 1px 3px rgba(0,0,0,.05)}
+footer{text-align:center;color:#888;font-size:13px;padding:24px}
+@media(max-width:600px){main{padding:16px}article{padding:20px 16px}nav a{margin-left:10px}}
+</style></head><body>
+<header><a class="brand" href="/"><img src="https://msgsndr-private.storage.googleapis.com/companyPhotos/032e4d2e-167f-4a88-a187-0f95a253ad1e.png" alt="MxP"><span style="border-left:1px solid rgba(255,255,255,.35);padding-left:14px">Help Center</span></a><nav><a href="/">Knowledge base</a><a href="https://app.marketingxprofit.com" target="_blank" rel="noopener">Go to MxP CRM &#8599;</a></nav></header>
+<div class="hero"><h1>How can we help?</h1><div class="search"><input id="q" type="search" placeholder="Search for articles..." autocomplete="off"><div id="results" class="results"></div></div></div>
+<main><div class="crumbs"><a href="/">Knowledge base</a> &rsaquo; <a href="/category/48000455132-workflows/">Workflows</a> &rsaquo; <a href="/folder/155000001603-workflow-maps/">Workflow Maps</a></div><article><h1>Review workflows with errors</h1><p>Find workflows that encountered errors, inspect failed executions, and open the workflow to fix the affected step.</p><p>TABLE OF CONTENTS</p><ul><li><a href="#section-0">What an errors badge means</a></li><li><a href="#section-1">Steps for finding workflows with errors</a></li><li><a href="#section-2">Inspect a failed execution</a></li><li><a href="#section-3">Fix the step and mark the issue as read</a></li><li><a href="#section-4">Frequently Asked Questions</a></li></ul><section><h2>What an errors badge means</h2><p>An errors badge indicates that a workflow encountered errors during recent runs. Use it to identify workflows that need investigation.</p><p>The badge points you to a problem. Open the failed execution to read the error and identify the affected step.</p></section><section><h2>Steps for finding workflows with errors</h2><ol><li>Open <strong>Automation → Workflows → Workflow Maps</strong>.</li><li>Click <strong>Review workflows with errors</strong>.</li><li>Review the list, which separates <strong>Published</strong> and <strong>Draft</strong> workflows.</li><li>Select a workflow to inspect its failed executions.</li></ol><p>To focus the map on flagged workflows, use the <strong>Has issues</strong> filter.</p></section><section><h2>Inspect a failed execution</h2><p>Select a workflow in the error review to see its failed executions, the step that failed, and the error.</p><p>Read the error alongside the affected step. For example, if a webhook action failed, inspect the error for that execution before changing the action.</p><p>Use <strong>Open in builder</strong> to investigate and edit the workflow step.</p><p>To inspect a past run from a workflow’s details, select <strong>Total Enrolled</strong>, choose an enrollment, and select the failed action to open its <strong>Event details</strong>.</p><p><img alt="Historical execution details identify the failed action, its status, and the error message." data-id="155084352890" loading="lazy" src="https://fgdlpfnisaeyimjuhvft.supabase.co/storage/v1/object/public/help-assets/155000009464/5a4cf2a130dac3f1.jpg"/></p><p>Historical execution details identify the failed action, its status, and the error message.</p></section><section><h2>Fix the step and mark the issue as read</h2><ol><li>Open the affected workflow in the builder.</li><li>Review the error and correct the affected step.</li><li>Return to Workflow Maps.</li><li>Click <strong>Mark as read</strong> to clear the badge after reviewing the issue.</li></ol><p><strong>Mark as read</strong> clears the notification badge. Correcting the workflow requires changes in the builder; clearing the badge does not make those changes.</p></section><section><h2>Frequently Asked Questions</h2><p><strong>Q: Can I view all flagged workflows in one place?</strong></p><p>Yes. Click <strong>Review workflows with errors</strong>.</p><p><strong>Q: Why are Published and Draft listed separately?</strong></p><p>The review groups flagged workflows by their current publication status.</p><p><strong>Q: Can I fix a workflow step from the map?</strong></p><p>Use <strong>Open in builder</strong> to edit the workflow.</p><p><strong>Q: Does Mark as read retry a failed execution?</strong></p><p>The documented behavior is to clear the badge. Do not use it as a retry or repair action.</p></section><hr/><h2>Next article</h2><p><a href="/article/155000009465-article/">Trace a contact through workflows</a></p><div class="meta">Last updated Tue, 27 Oct, 2026 at  4:34 PM</div></article></main>
+<footer>&copy; Marketing x Profit &middot; <a href="mailto:support@marketingxprofit.com">support@marketingxprofit.com</a></footer>
+<script>
+(function(){var i=document.getElementById('q'),r=document.getElementById('results'),idx=null;
+function load(cb){if(idx)return cb();fetch('/search.json').then(x=>x.json()).then(d=>{idx=d;cb();});}
+function esc(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+i.addEventListener('input',function(){var q=i.value.trim().toLowerCase();if(q.length<2){r.style.display='none';return;}
+load(function(){var w=q.split(/\s+/),hits=idx.map(a=>{var t=a.t.toLowerCase(),d=(a.d||'').toLowerCase(),s=0;
+w.forEach(x=>{if(t.includes(x))s+=3;if(d.includes(x))s+=1;});return [s,a];}).filter(x=>x[0]>0).sort((a,b)=>b[0]-a[0]).slice(0,12);
+r.innerHTML=hits.length?hits.map(x=>'<a href="'+x[1].u+'">'+esc(x[1].t)+'<small>'+esc(x[1].f)+'</small></a>').join(''):'<a>No articles found</a>';r.style.display='block';});});
+document.addEventListener('click',e=>{if(!r.contains(e.target)&&e.target!==i)r.style.display='none';});})();
+</script></body></html>
